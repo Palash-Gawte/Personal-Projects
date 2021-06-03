@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-image:url('https://i.pinimg.com/originals/0b/b3/c4/0bb3c4eb3898c427f9da1e11d80429df.jpg') ;
+          
+          
+        }
+.cont div {
+    /* display:inline-block ; */
+    width: 1300px;
+    border-radius: 20px;
+    padding: 1% 2%;
+    /* animation: slide 1s ease-out; */
+    
+}
+
+@keyframes slide {
+    from {transform:rotateX(90deg); }
+    to {transform:rotateX(0deg); }
+}
+
+input {
+    width: 200px;
+    height: 30px;
+    margin-left:30%;
+    margin-top: 3%;
+border-radius: 10px;
+outline:orchid;
+}
+
+button {
+    height: 30px;
+    border-radius: 10px;
+}
+    </style>
+</head>
+<body>
+    <div class="cont">
+        <input type="text" placeholder="Enter Task" id="note">
+        <button>Submit</button>
+        <ol>
+        </ol>
+    </div>
+</body>
+<script>
+    var btn= document.querySelector('button')
+    btn.addEventListener('click',add_task)
+var apn = document.querySelector('ol')
+var id=1
+
+
+    function add_task (){
+    var text=document.getElementById("note")
+var list_item= document.createElement('div')
+var brk = document.createElement("br")
+
+
+if(text.value=='')
+alert("Please Enter Text")
+else {
+var myTask = text.value
+        
+list_item.innerHTML=`<p id=${id}>${id}.${myTask}</p> <button onclick="Done(${id})">Done</button><button onclick="Remove(${id})">Remove</button> `
+ 
+ var randomColor = 'rgba(' + random(255) + ',' + random(255) + ',' + random(255) +', 0.7)';
+       
+ list_item.style.backgroundColor = randomColor         
+list_item.style.animation = "slide 0.5s ease-out"
+list_item.style.overflow = "hidden"
+list_item.style.textOverflow = "ellipsis"
+           
+      apn.append( list_item)   
+     apn.append(brk)  
+
+
+
+id++
+}
+text.value=""
+ }
+
+     function random(number) {
+        return Math.floor(Math.random() * number);
+    }
+
+      function Done(id) {
+        var p = document.getElementById(id)
+        p.style.textDecoration="line-through"
+    }
+
+    function Remove(d) {
+        var p = document.getElementById(d)
+        var parent = p.parentElement
+       id--
+        parent.remove()
+    
+    }
+</script>
+</html>
